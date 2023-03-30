@@ -1,4 +1,4 @@
-package com.example.gcback.service;
+package com.example.gcback.services;
 
 import com.example.gcback.entities.Role;
 

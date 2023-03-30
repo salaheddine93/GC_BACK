@@ -1,6 +1,5 @@
-package com.example.gcback.service;
+package com.example.gcback.services;
 
-import com.example.gcback.entities.Role;
 import com.example.gcback.entities.User;
 
 import java.util.List;
@@ -11,5 +10,5 @@ public interface UserService {
     User getUserById(Long id);
     List<User> listUsers();
     void deleteUser(Long id);
-    void addRoletoUser(String roleName, String userName);
+    void addRoletoUser(String userName, String roleName);
 }

@@ -1,11 +1,15 @@
-package com.example.gcback.service;
+package com.example.gcback.services;
 
-import com.example.gcback.dao.RoleRepo;
+import com.example.gcback.repositories.RoleRepo;
 import com.example.gcback.entities.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
+@Transactional
 public class RoleServiceImpl implements RoleService{
 
     @Autowired

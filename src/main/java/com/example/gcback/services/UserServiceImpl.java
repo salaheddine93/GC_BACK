@@ -1,26 +1,30 @@
-package com.example.gcback.service;
+package com.example.gcback.services;
 
-import com.example.gcback.dao.RoleRepo;
-import com.example.gcback.dao.UserRepo;
+import com.example.gcback.repositories.RoleRepo;
+import com.example.gcback.repositories.UserRepo;
 import com.example.gcback.entities.Role;
 import com.example.gcback.entities.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
 
-    private UserRepo userRepo;
-    private RoleRepo roleRepo;
+    private final UserRepo userRepo;
+    private final RoleRepo roleRepo;
 
-    //@Autowired private PasswordEn
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public User addNewUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepo.save(user);
     }
 
@@ -40,9 +44,9 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void addRoletoUser(String roleName, String userName) {
+    public void addRoletoUser(String userName, String roleName) {
         Role role = roleRepo.findByRolename(roleName);
-        User user = userRepo.findByUsername(userName);
-        user.getRoles().add(role);
+        Optional<User> user = userRepo.findByUsername(userName);
+        user.get().getRoles().add(role);
     }
 }

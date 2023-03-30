@@ -1,4 +1,4 @@
-package com.example.gcback.dao;
+package com.example.gcback.repositories;
 
 import com.example.gcback.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;

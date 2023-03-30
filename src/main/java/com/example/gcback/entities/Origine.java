@@ -1,21 +1,20 @@
 package com.example.gcback.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
 @Entity
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Role{
+@NoArgsConstructor
+@Data
+public class Origine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(unique = true, nullable = false)
-    private String rolename;
+    private String origine;
 }
