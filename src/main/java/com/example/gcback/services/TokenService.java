@@ -30,7 +30,7 @@ public class TokenService {
                 .claim("scope", scope)
                 .build();
         String jwtAccessToken = jwtEncoder.encode(JwtEncoderParameters.from(jwtClaimsSet)).getTokenValue();
-        idToken.put("Access Token", jwtAccessToken);
+        idToken.put("accessToken", jwtAccessToken);
 
         if (withRefreshToken){
             JwtClaimsSet jwtClaimsSetRefresh = JwtClaimsSet.builder()
@@ -40,7 +40,7 @@ public class TokenService {
                     .issuer("sparrow")
                     .build();
             String jwtRefreshToken = jwtEncoder.encode(JwtEncoderParameters.from(jwtClaimsSetRefresh)).getTokenValue();
-            idToken.put("Refresh Token", jwtRefreshToken);
+            idToken.put("refreshToken", jwtRefreshToken);
         }
         return idToken;
     }

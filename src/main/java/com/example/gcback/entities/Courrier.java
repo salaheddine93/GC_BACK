@@ -8,16 +8,14 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
-public class Courrier {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@NoArgsConstructor @AllArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Courrier {
+
+    @Id @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
-    private Integer numOrdre;
-    private Date dateArrivee;
-    private Boolean departArrivee; //depart wla arrivee
+
     @ManyToOne
     private Type type;
     private Integer refEcrit;
@@ -26,4 +24,5 @@ public class Courrier {
     private Origine origine;
     private String objet;
     private String classement;
+    private String fichierNum;
 }

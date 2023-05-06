@@ -1,9 +1,11 @@
 package com.example.gcback.controllers;
 
-import com.example.gcback.entities.Role;
-import com.example.gcback.entities.User;
-import com.example.gcback.services.RoleService;
-import com.example.gcback.services.UserService;
+import com.example.gcback.dto.request.RoleRequestDto;
+import com.example.gcback.dto.request.UserRequestDto;
+import com.example.gcback.dto.response.RoleResponseDto;
+import com.example.gcback.dto.response.UserResponseDto;
+import com.example.gcback.services.interfaces.RoleService;
+import com.example.gcback.services.interfaces.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -19,13 +21,13 @@ public class AccountController {
     private final RoleService roleService;
 
     @GetMapping(path = "/users")
-    public List<User> allUsers(){
+    public List<UserResponseDto> allUsers(){
         return userService.listUsers();
     }
 
     @PostMapping(path = "/addUser")
-    public User saveUser(@RequestBody User user){
-        return userService.addNewUser(user);
+    public UserResponseDto saveUser(@RequestBody UserRequestDto userRequestDto){
+        return userService.addNewUser(userRequestDto);
     }
 
     @DeleteMapping(path = "/users/{id}")
@@ -34,13 +36,13 @@ public class AccountController {
     }
 
     @GetMapping(path = "/roles")
-    public List<Role> allRoles(){
+    public List<RoleResponseDto> allRoles(){
         return roleService.listRoles();
     }
 
     @PostMapping(path = "/addRole")
-    public Role saveRole(@RequestBody Role role){
-        return roleService.addNewRole(role);
+    public RoleResponseDto saveRole(@RequestBody RoleRequestDto roleRequestDto){
+        return roleService.addNewRole(roleRequestDto);
     }
 
     @DeleteMapping(path = "/roles/{id}")

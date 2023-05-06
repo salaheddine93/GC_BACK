@@ -1,6 +1,7 @@
 package com.example.gcback;
 
 import com.example.gcback.security.RsaKeysConfig;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -15,12 +16,17 @@ public class GcBackApplication {
     public static void main(String[] args) {
         SpringApplication.run(GcBackApplication.class, args);
 
-        // System.out.println(passwordEncoder().encode("123456"));
+         //System.out.println(passwordEncoder().encode("123456"));
     }
 
     @Bean
     public static PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public ModelMapper modelMapper(){
+        return new ModelMapper();
     }
 
 }

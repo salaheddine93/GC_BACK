@@ -28,6 +28,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
 
 
 @Configuration
@@ -40,6 +41,7 @@ public class SecurityConfig {
 
     private final UserDetailsServiceImpl userDetailsService;
     private final AuthEntryPointJwt entryPointJwt;
+    private final CorsConfiguration corsConfiguration;
 
 
 
@@ -90,6 +92,7 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider())
                 .exceptionHandling(e->e.authenticationEntryPoint(entryPointJwt))
                 .httpBasic(Customizer.withDefaults())
+                .cors().configurationSource(request -> corsConfiguration).and()
                 .build();
     }
 
